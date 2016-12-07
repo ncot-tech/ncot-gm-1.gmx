@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-10</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_entity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -31,8 +31,35 @@ vspd = 0;
 len = 0;
 xaxis = 0;
 yaxis = 0;
+face = RIGHT;
+dir = 0;
+state = player_move_state;
 get_user_input();
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// This alarm is for the attack state
+state = player_move_state;
 </string>
           </argument>
         </arguments>
@@ -55,68 +82,7 @@ get_user_input();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>get_user_input();
-
-// Get direction
-var dir = point_direction(0,0, xaxis,yaxis);
-
-// get length
-if (xaxis == 0 &amp;&amp; yaxis == 0) {
-    len = 0;
-} else {
-    len = spd;
-}
-
-// Set the speed
-hspd = lengthdir_x(len, dir);
-vspd = lengthdir_y(len, dir);
-
-// Do the movement
-move(hspd, vspd);
-
-// Control the sprite
-image_speed = 0.2;
-if (len == 0) image_index = 0;
-if (vspd &gt; 0) {
-    sprite_index = spr_player_down;
-} else if (vspd &lt; 0) {
-    sprite_index = spr_player_up;
-}
-if (hspd &gt; 0) {
-    sprite_index = spr_player_right;
-} else if (hspd &lt; 0) {
-    sprite_index = spr_player_left;
-}
-
-
-depth = -y;
-
-camera_view_tween();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Draw a shadow
-draw_sprite(spr_player_shadow, image_index, x, y+14);
-draw_self();
+            <string>script_execute(state);
 </string>
           </argument>
         </arguments>
